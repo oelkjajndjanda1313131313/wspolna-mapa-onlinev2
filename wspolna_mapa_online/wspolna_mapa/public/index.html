@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wspólna Mapa</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">⌖ <span>Wspólna Mapa</span></div>
+    <span class="pill" id="connection">Łączenie…</span>
+  </header>
+  <main>
+    <section class="panel">
+      <h1>Wasze pozycje, jedna mapa</h1>
+      <p class="sub">Utwórz pokój i wyślij kod zaufanej osobie. Pozycja pojawi się dopiero, gdy dana osoba sama włączy udostępnianie.</p>
+
+      <label for="name">Twoja nazwa</label>
+      <input id="name" maxlength="24" placeholder="Np. Alex" autocomplete="nickname">
+
+      <div class="actions">
+        <button id="create" class="primary">Utwórz pokój</button>
+      </div>
+
+      <div class="separator"><span>albo dołącz do pokoju</span></div>
+      <label for="room">Kod pokoju</label>
+      <input id="room" placeholder="Wpisz kod od znajomego" autocapitalize="none">
+      <button id="join">Dołącz</button>
+
+      <div id="roomInfo" class="room-info hidden">
+        <div class="room-title">Kod zaproszenia</div>
+        <div class="invite-row"><code id="roomCode"></code><button id="copy" class="small">Kopiuj</button></div>
+        <p class="hint">Wyślij kod drugiej osobie. Nie publikuj go publicznie.</p>
+      </div>
+
+      <div class="sharing">
+        <h2>Udostępnianie GPS</h2>
+        <p id="shareStatus" class="sub">Najpierw utwórz pokój lub dołącz do niego.</p>
+        <button id="share" class="primary" disabled>Włącz moje udostępnianie</button>
+        <button id="stop" class="danger" disabled>Zatrzymaj udostępnianie</button>
+      </div>
+
+      <h2>Osoby w pokoju</h2>
+      <div id="members" class="members"><p class="muted">Nie jesteś jeszcze w pokoju.</p></div>
+      <p class="privacy">Pozycje są przesyłane na żywo i przechowywane tylko w pamięci serwera. Zamknięcie strony lub zatrzymanie udostępniania kończy przesyłanie. Korzystaj wyłącznie z osobami, które świadomie wyraziły zgodę.</p>
+    </section>
+    <section class="map-wrap">
+      <div id="map"></div>
+      <div class="map-caption">Mapa może wymagać połączenia z internetem.</div>
+    </section>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
